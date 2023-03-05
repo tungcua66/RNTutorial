@@ -1,49 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, 
-  TextInput, Button, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import {useState} from 'react';
-import 'react-native-get-random-values'
-import { nanoid } from 'nanoid'
+
+import GoalInput from './components/GoalInput';
+import GoalListItem from './components/GoalListItem';
 
 export default function App() {
-  const [inputGoalText, setInputGoalText] = useState('');
   const [goalList, setGoalList] = useState([]);
-
-  const onChangeGoalTextHandler = (enteredGoalText) => {
-    setInputGoalText(enteredGoalText);
-  }
-
-  const addGoalHandler = () => {
-    console.log(goalList)
-    setGoalList(currentList => [...currentList, {text: inputGoalText, id: nanoid()} ]);
-  }
-
 
   return (
     <View style={styles.mainContainer}>
-     <View style={styles.inputContainer}>
-        <TextInput placeholder="Enter your goal" 
-          style={styles.input}
-          onChangeText={onChangeGoalTextHandler}
-        />
-        <Button 
-          title="Add goal"
-          onPress={addGoalHandler}
-        />
-     </View>
+     <GoalInput setGoalList={setGoalList}/>
      <View style={styles.goalsContainer}>
       <FlatList
         alwaysBounceVertical={false}  
         data={goalList} 
         renderItem={(itemData) => {
           return(
-            <View style={styles.goalListItem}>
-              <Text 
-                style={styles.goalListItemText}
-              > 
-              {itemData.item.text}
-              </Text>
-            </View>
+            <GoalListItem text={itemData.item.text}
+              id={itemData.item.id}
+              setGoalList={setGoalList}
+            />
           )}}
         keyExtractor={(item, index) => {return item.id}}
       />
@@ -61,13 +37,5 @@ const styles = StyleSheet.create({
     goalsContainer: {
       flex: 5,
     },
-    goalListItem: {
-      backgroundColor: '#012A36',
-      margin: 8,
-      padding: 8,
-      borderRadius: 8
-    },
-    goalListItemText: {
-      color: 'white'
-    },
+    
 });

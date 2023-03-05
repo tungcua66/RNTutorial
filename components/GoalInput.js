@@ -1,16 +1,19 @@
 import {View, Button, TextInput, StyleSheet} from 'react-native';
 import {useState} from 'react';
+import 'react-native-get-random-values';
+import { nanoid } from 'nanoid';
 
 
 const GoalInput = ({setGoalList}) => {
   const [inputGoalText, setInputGoalText] = useState('');
+
   const onChangeGoalTextHandler = (enteredGoalText) => {
     setInputGoalText(enteredGoalText);
   }
 
   const addGoalHandler = () => {
-    console.log(goalList)
     setGoalList(currentList => [...currentList, {text: inputGoalText, id: nanoid()} ]);
+    setInputGoalText('');
   }
 
   
@@ -19,6 +22,7 @@ const GoalInput = ({setGoalList}) => {
         <TextInput placeholder="Enter your goal" 
           style={styles.input}
           onChangeText={onChangeGoalTextHandler}
+          value={inputGoalText}
         />
         <Button 
           title="Add goal"
@@ -37,7 +41,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#cccccc'
+    borderBottomColor: '#cccccc',
   },
   input: {
     borderWidth: 1,
