@@ -7,27 +7,29 @@ const GoalListItem = ({text, id, setGoalList}) => {
   }
 
   return (
-    <Pressable onPress={() => {onDeleteItemHandler(id)}}>
-        <View style={styles.goalListItem}>
+    <View style={styles.goalListItem}>
+        <Pressable onPress={() => {onDeleteItemHandler(id)}}
+            android_ripple={{color: '#c2b8b8'}}
+        >
                 <Text 
                     style={styles.goalListItemText}
                 > 
                 {text}
                 </Text>
-        </View>
-    </Pressable>
+        </Pressable>
+    </View>
   )
 };
 
 const styles = StyleSheet.create({
     goalListItem: {
-        backgroundColor: '#012A36',
+        backgroundColor: '#679289',
         margin: 8,
-        padding: 8,
         borderRadius: 8
       },
       goalListItemText: {
-        color: 'white'
+        color: 'white',
+        padding: 8,
       },
 })
 
