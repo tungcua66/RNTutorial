@@ -2,6 +2,7 @@ import {View, Button, Text, StyleSheet, Pressable} from 'react-native';
 import {useState} from 'react';
 
 const GoalListItem = ({text, id, setGoalList}) => {
+  var i =1;
   const onDeleteItemHandler = (id) => {
     setGoalList(currentGoalList => currentGoalList.filter((goalItem) => goalItem.id !== id));
   }
