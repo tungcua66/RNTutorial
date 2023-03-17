@@ -26,7 +26,8 @@ module.exports = {
     'react-native/no-single-element-style-arrays': 2,
     'react/style-prop-object': 0,
     'react/jsx-uses-react': 'off',
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    'react/function-component-definition': 0,
   },
   globals: {
     fetch: false
