@@ -13,6 +13,7 @@
     "babel-preset-expo": "^9.3.0",
     "expo": "~47.0.12",
     "expo-cli": "^6.3.0",
+    "expo-linear-gradient": "^12.1.2",
     "expo-status-bar": "~1.4.2",
     "nanoid": "^4.0.1",
     "react": "18.1.0",
