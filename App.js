@@ -1,11 +1,16 @@
 import { StyleSheet, ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { LinearGradient } from 'expo-linear-gradient';
 
 import StartGameScreen from './screens/StartGameScreen';
+import InGameScreen from './screens/InGameScreen';
 
 const backgroundImage = require('./assets/images/background.jpg');
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
@@ -21,7 +26,13 @@ export default function App() {
         resizeMode="cover"
         imageStyle={styles.backgroundImage}
       >
-        <StartGameScreen />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="StartGame">
+            <Stack.Screen name="StartGame" component={StartGameScreen} />
+            <Stack.Screen name="InGame" component={InGameScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+        {/* <StartGameScreen /> */}
       </ImageBackground>
     </LinearGradient>
   );

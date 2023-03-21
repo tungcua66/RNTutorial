@@ -5,7 +5,7 @@ import {
 
 import PrimaryButton from '../components/PrimaryButton';
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ navigation }) => {
   const [enteredNumber, setEnteredNumber] = useState('');
 
   const resetNumberHandler = () => {
@@ -13,7 +13,7 @@ const StartGameScreen = () => {
   };
 
   const confirmNumberHandler = () => {
-    if (Number.isNaN(enteredNumber) || enteredNumber < 0 || enteredNumber > 99) {
+    if (!Number.isNaN(enteredNumber) || enteredNumber < 0 || enteredNumber > 99) {
       Alert.alert(
         'Invalid number',
         'Please enter a number between 0 and 99',
@@ -22,6 +22,7 @@ const StartGameScreen = () => {
       setEnteredNumber('');
       return null;
     }
+    return navigation.navigate('InGame');
   };
 
   return (
