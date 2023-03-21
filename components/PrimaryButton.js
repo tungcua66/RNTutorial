@@ -2,13 +2,14 @@ import {
   View, Text, StyleSheet, Pressable
 } from 'react-native';
 
-const PrimaryButton = ({ text }) => {
+const PrimaryButton = ({ text, onPress }) => {
   return (
     <View style={styles.buttonOuterContainer}>
       <Pressable
         style={({ pressed }) => (pressed
           ? [styles.pressed, styles.buttonInnerContainer] : styles.buttonInnerContainer)}
         android_ripple={{ color: '#5293ea', borderless: true }}
+        onPress={onPress}
       >
         <Text style={styles.buttonText}>{text}</Text>
       </Pressable>
