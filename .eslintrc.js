@@ -28,6 +28,7 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': 0,
+    'no-nested-ternary': 0,
   },
   globals: {
     fetch: false
