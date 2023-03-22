@@ -8,6 +8,8 @@ import StartGameScreen from './screens/StartGameScreen';
 import InGameScreen from './screens/InGameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 
+import { Colors } from './constants/colors';
+
 const backgroundImage = require('./assets/images/background.jpg');
 
 export default function App() {
@@ -15,11 +17,10 @@ export default function App() {
 
   return (
     <LinearGradient
-      colors={['#172b94', '#62c2dd']}
+      colors={[Colors.primary500, Colors.accent800]}
       style={styles.container}
     >
       <StatusBar style="auto" />
-      {/* { screen === 'StartGameScreen' ?? <StartGameScreen setScreen={setScreen} />} */}
       <ImageBackground
         source={backgroundImage}
         style={styles.container}
