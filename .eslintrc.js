@@ -29,6 +29,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': 0,
     'no-nested-ternary': 0,
+    'import/prefer-default-export': 0,
   },
   globals: {
     fetch: false
