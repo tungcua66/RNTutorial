@@ -4,4 +4,5 @@ export const Colors = {
   accent800: '#62c2dd',
   accent500: '#81e5d8',
   android_ripple_color: '#5293ea',
+  primaryButtonTextColor: 'white',
 };
