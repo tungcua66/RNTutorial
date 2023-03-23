@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   View, StyleSheet, Text, Alert
 } from 'react-native';
@@ -13,10 +13,14 @@ import getRandomNumber from '../helpers/getRandomNumber';
 let minBoundary = 1;
 let maxBoundary = 99;
 
-const InGameScreen = ({ enteredNumber }) => {
-
-  const initialGuess = getRandomNumber(minBoundary, maxBoundary, enteredNumber);
+const InGameScreen = ({ enteredNumber, setScreen }) => {
+  const initialGuess = getRandomNumber(1, 99, enteredNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  useEffect(() => {
+    if (currentGuess === +(enteredNumber)) {
+      setScreen('GameOverScreen');
+    }
+  }, [currentGuess, enteredNumber, setScreen]);
 
   const nextGuessHandler = (direction) => {
     if ((direction === 'lower' && currentGuess < enteredNumber)
@@ -32,7 +36,6 @@ const InGameScreen = ({ enteredNumber }) => {
       maxBoundary = currentGuess;
     } else { minBoundary = currentGuess + 1; }
     // console.log(`min=${minBoundary} max=${maxBoundary}`);
-    // console.log('enteredNumber', enteredNumber);
     return setCurrentGuess(getRandomNumber(minBoundary, maxBoundary, currentGuess));
 
   };
