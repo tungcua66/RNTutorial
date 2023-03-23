@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   View, TextInput, StyleSheet, Alert
 } from 'react-native';
@@ -6,8 +5,7 @@ import {
 import PrimaryButton from '../components/ui/PrimaryButton';
 import { Colors } from '../constants/colors';
 
-const StartGameScreen = ({ setScreen }) => {
-  const [enteredNumber, setEnteredNumber] = useState('');
+const StartGameScreen = ({ setScreen, enteredNumber, setEnteredNumber }) => {
 
   const resetNumberHandler = () => {
     setEnteredNumber('');

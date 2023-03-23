@@ -5,11 +5,20 @@ import NumberGuess from '../components/game/NumberGuess';
 
 import { Colors } from '../constants/colors';
 
-const InGameScreen = () => {
+const InGameScreen = ({ enteredNumber }) => {
+  const getRandomInt = (x, y, exclude) => {
+    const min = Math.ceil(x);
+    const max = Math.floor(y);
+    const randNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    if (randNumber === exclude) {
+      return getRandomInt(x, y, exclude);
+    }
+    return randNumber;
+  };
   return (
     <View style={styles.container}>
       <Title title="Opponent's guess" />
-      <NumberGuess textNumber={22} />
+      <NumberGuess textNumber={getRandomInt(1, 99, enteredNumber)} />
       <Text style={styles.text}> Higher or lower ?</Text>
     </View>
   );

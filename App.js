@@ -13,6 +13,8 @@ import { Colors } from './constants/colors';
 const backgroundImage = require('./assets/images/background.jpg');
 
 export default function App() {
+  const [enteredNumber, setEnteredNumber] = useState('');
+
   const [screen, setScreen] = useState('StartGameScreen');
 
   return (
@@ -29,9 +31,16 @@ export default function App() {
       >
         <SafeAreaView style={styles.container}>
           {screen === 'StartGameScreen' ? (
-            <StartGameScreen setScreen={setScreen} />
+            <StartGameScreen
+              setScreen={setScreen}
+              enteredNumber={enteredNumber}
+              setEnteredNumber={setEnteredNumber}
+            />
           ) : screen === 'InGameScreen' ? (
-            <InGameScreen setScreen={setScreen} />
+            <InGameScreen
+              setScreen={setScreen}
+              enteredNumber={enteredNumber}
+            />
           ) : screen === 'GameOverScreen' ? (
             <GameOverScreen setScreen={setScreen} />
           ) : null}
