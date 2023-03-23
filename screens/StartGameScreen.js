@@ -37,13 +37,18 @@ const StartGameScreen = ({ setScreen, enteredNumber, setEnteredNumber }) => {
       />
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <PrimaryButton text="Reset" onPress={resetNumberHandler} />
+          <PrimaryButton
+            onPress={resetNumberHandler}
+          >
+            Reset
+          </PrimaryButton>
         </View>
         <View style={styles.buttonContainer}>
           <PrimaryButton
-            text="Confirm"
             onPress={() => confirmNumberHandler(parseInt(enteredNumber, 10))}
-          />
+          >
+            Confirm
+          </PrimaryButton>
         </View>
       </View>
     </View>

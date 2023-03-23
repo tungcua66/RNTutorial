@@ -1,25 +1,65 @@
-import { View, StyleSheet, Text } from 'react-native';
+import { useState } from 'react';
+import {
+  View, StyleSheet, Text, Alert
+} from 'react-native';
 
 import Title from '../components/ui/Title';
 import NumberGuess from '../components/game/NumberGuess';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 import { Colors } from '../constants/colors';
+import getRandomNumber from '../helpers/getRandomNumber';
+
+let minBoundary = 1;
+let maxBoundary = 99;
 
 const InGameScreen = ({ enteredNumber }) => {
-  const getRandomInt = (x, y, exclude) => {
-    const min = Math.ceil(x);
-    const max = Math.floor(y);
-    const randNumber = Math.floor(Math.random() * (max - min + 1) + min);
-    if (randNumber === exclude) {
-      return getRandomInt(x, y, exclude);
+
+  const initialGuess = getRandomNumber(minBoundary, maxBoundary, enteredNumber);
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+  const nextGuessHandler = (direction) => {
+    if ((direction === 'lower' && currentGuess < enteredNumber)
+      || (direction === 'greater' && currentGuess > enteredNumber)) {
+      Alert.alert(
+        'Dont lie',
+        'Please give opponent right direction',
+        [{ text: 'Sorry', style: 'cancel' }]
+      );
+      return null;
     }
-    return randNumber;
+    if (direction === 'lower') {
+      maxBoundary = currentGuess;
+    } else { minBoundary = currentGuess + 1; }
+    // console.log(`min=${minBoundary} max=${maxBoundary}`);
+    // console.log('enteredNumber', enteredNumber);
+    return setCurrentGuess(getRandomNumber(minBoundary, maxBoundary, currentGuess));
+
   };
+
   return (
     <View style={styles.container}>
       <Title title="Opponent's guess" />
-      <NumberGuess textNumber={getRandomInt(1, 99, enteredNumber)} />
+      <NumberGuess textNumber={currentGuess} />
       <Text style={styles.text}> Higher or lower ?</Text>
+      <View style={styles.buttonsGroup}>
+        <PrimaryButton
+          onPress={() => { nextGuessHandler('greater'); }}
+        >
+          {' '}
+          +
+          {' '}
+
+        </PrimaryButton>
+        <PrimaryButton
+          onPress={() => { nextGuessHandler('lower'); }}
+        >
+          {' '}
+          -
+          {' '}
+
+        </PrimaryButton>
+      </View>
     </View>
   );
 };
@@ -39,5 +79,9 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     color: Colors.primary800,
-  }
+  },
+  buttonsGroup: {
+    flexDirection: 'row',
+    // backgroundColor: 'red',
+  },
 });
