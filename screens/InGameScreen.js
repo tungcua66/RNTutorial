@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   View, StyleSheet, Alert
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import Title from '../components/ui/Title';
 import NumberGuess from '../components/game/NumberGuess';
@@ -50,12 +51,12 @@ const InGameScreen = ({ enteredNumber, setScreen }) => {
         <View style={styles.buttonsGroup}>
           <View style={styles.buttonItem}>
             <PrimaryButton onPress={() => { nextGuessHandler('greater'); }}>
-              +
+              <Ionicons name="add" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonItem}>
             <PrimaryButton onPress={() => { nextGuessHandler('lower'); }}>
-              -
+              <Ionicons name="remove" size={24} color="white" />
             </PrimaryButton>
           </View>
         </View>

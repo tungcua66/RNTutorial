@@ -1,5 +1,9 @@
-import { useState } from 'react';
-import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
+import { useState, useEffect } from 'react';
+import {
+  StyleSheet, ImageBackground, SafeAreaView, Text
+} from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 
 import { LinearGradient } from 'expo-linear-gradient';
@@ -11,11 +15,25 @@ import GameOverScreen from './screens/GameOverScreen';
 import { Colors } from './constants/colors';
 
 const backgroundImage = require('./assets/images/background.jpg');
+const openSansRegular = require('./assets/fonts/OpenSans-Regular.ttf');
+const openSansBold = require('./assets/fonts/OpenSans-Bold.ttf');
 
 export default function App() {
-  const [enteredNumber, setEnteredNumber] = useState('');
 
+  const [enteredNumber, setEnteredNumber] = useState('');
   const [screen, setScreen] = useState('StartGameScreen');
+
+  const [fontsLoaded] = useFonts({
+    'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    console.log('not loaded');
+    return <Text>Loading...</Text>;
+  }
+  console.log('loaded');
+  SplashScreen.hideAsync();
 
   return (
     <LinearGradient
@@ -47,6 +65,7 @@ export default function App() {
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
+
   );
 }
 

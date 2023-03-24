@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 24,
     padding: 5,
-    fontWeight: 'bold',
     color: Colors.accent800,
+    fontFamily: 'OpenSans-Bold'
   }
 });
