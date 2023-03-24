@@ -24,17 +24,21 @@ export default function App() {
   const [screen, setScreen] = useState('StartGameScreen');
 
   const [fontsLoaded] = useFonts({
-    'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    'OpenSans-Regular': openSansRegular,
+    'OpenSans-Bold': openSansBold,
   });
 
+  useEffect(() => {
+    const prepare = async () => {
+      await SplashScreen.preventAutoHideAsync();
+    };
+    prepare();
+  }, []);
+
   if (!fontsLoaded) {
-    console.log('not loaded');
     return <Text>Loading...</Text>;
   }
-  console.log('loaded');
   SplashScreen.hideAsync();
-
   return (
     <LinearGradient
       colors={[Colors.primary500, Colors.accent800]}
