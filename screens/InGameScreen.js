@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import {
-  View, StyleSheet, Text, Alert
+  View, StyleSheet, Alert
 } from 'react-native';
 
 import Title from '../components/ui/Title';
 import NumberGuess from '../components/game/NumberGuess';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import Card from '../components/ui/Card';
+import InstructionText from '../components/ui/InstructionText';
 
-import { Colors } from '../constants/colors';
 import getRandomNumber from '../helpers/getRandomNumber';
 
 let minBoundary = 1;
@@ -44,25 +45,21 @@ const InGameScreen = ({ enteredNumber, setScreen }) => {
     <View style={styles.container}>
       <Title title="Opponent's guess" />
       <NumberGuess textNumber={currentGuess} />
-      <Text style={styles.text}> Higher or lower ?</Text>
-      <View style={styles.buttonsGroup}>
-        <PrimaryButton
-          onPress={() => { nextGuessHandler('greater'); }}
-        >
-          {' '}
-          +
-          {' '}
-
-        </PrimaryButton>
-        <PrimaryButton
-          onPress={() => { nextGuessHandler('lower'); }}
-        >
-          {' '}
-          -
-          {' '}
-
-        </PrimaryButton>
-      </View>
+      <Card>
+        <InstructionText> Higher or lower ?</InstructionText>
+        <View style={styles.buttonsGroup}>
+          <View style={styles.buttonItem}>
+            <PrimaryButton onPress={() => { nextGuessHandler('greater'); }}>
+              +
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttonItem}>
+            <PrimaryButton onPress={() => { nextGuessHandler('lower'); }}>
+              -
+            </PrimaryButton>
+          </View>
+        </View>
+      </Card>
     </View>
   );
 };
@@ -73,18 +70,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     margin: 20,
-    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
-    margin: 10,
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: Colors.primary800,
-  },
   buttonsGroup: {
     flexDirection: 'row',
-    // backgroundColor: 'red',
   },
+  buttonItem: {
+    flex: 1,
+  }
 });

@@ -23,21 +23,17 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
   buttonOuterContainer: {
     backgroundColor: Colors.primary500,
-    marginHorizontal: 10,
-    marginVertical: 10,
+    margin: 10,
     borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   buttonInnerContainer: {
     padding: 10,
-    width: '100%',
   },
   buttonText: {
     color: Colors.primaryButtonTextColor,
     fontSize: 18,
     textAlign: 'center',
-    padding: 2
+    padding: 2,
   },
   pressed: {
     opacity: 0.70,

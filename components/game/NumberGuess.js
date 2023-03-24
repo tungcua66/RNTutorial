@@ -16,7 +16,7 @@ export default NumberGuess;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    margin: 20,
     borderRadius: 2,
     borderWidth: 2,
     borderColor: Colors.accent800,
