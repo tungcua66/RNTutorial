@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
   container: {
     color: Colors.accent500,
     fontSize: 24,
-    fontWeight: 'bold',
     textAlign: 'center',
     borderRadius: 10,
     borderWidth: 2,
     borderColor: Colors.accent500,
     padding: 10,
+    fontFamily: 'OpenSans-Regular'
   }
 });

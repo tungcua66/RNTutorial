@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: Colors.accent500,
     textAlign: 'center',
-    padding: 10
+    padding: 10,
+    fontFamily: 'OpenSans-Regular'
   }
 });

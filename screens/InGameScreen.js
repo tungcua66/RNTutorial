@@ -37,7 +37,6 @@ const InGameScreen = ({ enteredNumber, setScreen }) => {
     if (direction === 'lower') {
       maxBoundary = currentGuess;
     } else { minBoundary = currentGuess + 1; }
-    // console.log(`min=${minBoundary} max=${maxBoundary}`);
     return setCurrentGuess(getRandomNumber(minBoundary, maxBoundary, currentGuess));
 
   };
