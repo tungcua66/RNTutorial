@@ -20,7 +20,7 @@ const GameOverScreen = ({ enteredNumber, numberOfGuess }) => {
         {' '}
         <Text style={styles.highlightText}>{numberOfGuess}</Text>
         {' '}
-        times for number
+        time for number
         {' '}
         <Text style={styles.highlightText}>{enteredNumber}</Text>
         {' '}
