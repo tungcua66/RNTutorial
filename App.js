@@ -68,8 +68,10 @@ export default function App() {
           ) : screen === 'GameOverScreen' ? (
             <GameOverScreen
               setScreen={setScreen}
-              numberOfGuess={numberOfGuess}
               enteredNumber={enteredNumber}
+              setEnteredNumber={setEnteredNumber}
+              numberOfGuess={numberOfGuess}
+              setNumberOfGuess={setNumberOfGuess}
             />
           ) : null}
         </SafeAreaView>

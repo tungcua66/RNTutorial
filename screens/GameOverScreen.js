@@ -3,12 +3,21 @@ import {
 } from 'react-native';
 
 import Title from '../components/ui/Title';
+import PrimaryButton from '../components/ui/PrimaryButton';
 
 import { Colors } from '../constants/colors';
 
 const goalImage = require('../assets/images/goal.jpg');
 
-const GameOverScreen = ({ enteredNumber, numberOfGuess }) => {
+const GameOverScreen = ({
+  enteredNumber, setEnteredNumber,
+  numberOfGuess, setNumberOfGuess, setScreen
+}) => {
+  const restartGame = () => {
+    setEnteredNumber('');
+    setNumberOfGuess(1);
+    setScreen('StartGameScreen');
+  };
   return (
     <View style={styles.container}>
       <Title title="Game is  over" />
@@ -25,6 +34,7 @@ const GameOverScreen = ({ enteredNumber, numberOfGuess }) => {
         <Text style={styles.highlightText}>{enteredNumber}</Text>
         {' '}
       </Text>
+      <PrimaryButton onPress={restartGame}> Start new game</PrimaryButton>
     </View>
   );
 };
@@ -44,7 +54,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.accent500,
     overflow: 'hidden',
-    margin: 20
+    margin: 30
   },
   image: {
     width: '100%',

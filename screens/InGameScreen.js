@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
-  View, StyleSheet, Alert
+  View, StyleSheet, Alert, Text, FlatList
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -18,11 +18,17 @@ let maxBoundary = 99;
 const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
   const initialGuess = getRandomNumber(1, 99, enteredNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [gameRounds, setGameRounds] = useState([initialGuess]);
   useEffect(() => {
     if (currentGuess === +(enteredNumber)) {
       setScreen('GameOverScreen');
     }
   }, [currentGuess, enteredNumber, setScreen]);
+
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 99;
+  }, []);
 
   const nextGuessHandler = (direction) => {
     if ((direction === 'lower' && currentGuess < enteredNumber)
@@ -38,7 +44,9 @@ const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
     if (direction === 'lower') {
       maxBoundary = currentGuess;
     } else { minBoundary = currentGuess + 1; }
-    return setCurrentGuess(getRandomNumber(minBoundary, maxBoundary, currentGuess));
+    const newGuess = getRandomNumber(minBoundary, maxBoundary, currentGuess);
+    setCurrentGuess(newGuess);
+    return setGameRounds((prevGameRounds) => [...prevGameRounds, newGuess]);
 
   };
 
@@ -61,6 +69,16 @@ const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
           </View>
         </View>
       </Card>
+      {/* {gameRounds.map((gameRound) => <Text>{gameRound}</Text>)} */}
+      <FlatList
+        data={gameRounds}
+        renderItem={(itemData) => {
+          return (
+            <Text>{itemData.item}</Text>
+          );
+        }}
+        keyExtractor={(item) => item}
+      />
     </View>
   );
 };
@@ -79,5 +97,9 @@ const styles = StyleSheet.create({
   },
   buttonItem: {
     flex: 1,
+  },
+  flatListContainer: {
+    width: 200,
+    height: 200
   }
 });
