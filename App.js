@@ -22,6 +22,7 @@ export default function App() {
 
   const [enteredNumber, setEnteredNumber] = useState('');
   const [screen, setScreen] = useState('StartGameScreen');
+  const [numberOfGuess, setNumberOfGuess] = useState(1);
 
   const [fontsLoaded] = useFonts({
     'OpenSans-Regular': openSansRegular,
@@ -62,9 +63,14 @@ export default function App() {
             <InGameScreen
               setScreen={setScreen}
               enteredNumber={enteredNumber}
+              setNumberOfGuess={setNumberOfGuess}
             />
           ) : screen === 'GameOverScreen' ? (
-            <GameOverScreen setScreen={setScreen} />
+            <GameOverScreen
+              setScreen={setScreen}
+              numberOfGuess={numberOfGuess}
+              enteredNumber={enteredNumber}
+            />
           ) : null}
         </SafeAreaView>
       </ImageBackground>

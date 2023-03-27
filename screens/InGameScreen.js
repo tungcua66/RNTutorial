@@ -15,7 +15,7 @@ import getRandomNumber from '../helpers/getRandomNumber';
 let minBoundary = 1;
 let maxBoundary = 99;
 
-const InGameScreen = ({ enteredNumber, setScreen }) => {
+const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
   const initialGuess = getRandomNumber(1, 99, enteredNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   useEffect(() => {
@@ -34,6 +34,7 @@ const InGameScreen = ({ enteredNumber, setScreen }) => {
       );
       return null;
     }
+    setNumberOfGuess((prevNumber) => prevNumber + 1);
     if (direction === 'lower') {
       maxBoundary = currentGuess;
     } else { minBoundary = currentGuess + 1; }
