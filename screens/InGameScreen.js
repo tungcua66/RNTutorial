@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
-  View, StyleSheet, Alert, Text, FlatList
+  View, StyleSheet, Alert, FlatList
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -9,6 +9,7 @@ import NumberGuess from '../components/game/NumberGuess';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
+import RoundDetail from '../components/game/RoundDetail';
 
 import getRandomNumber from '../helpers/getRandomNumber';
 
@@ -69,16 +70,18 @@ const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
           </View>
         </View>
       </Card>
-      {/* {gameRounds.map((gameRound) => <Text>{gameRound}</Text>)} */}
-      <FlatList
-        data={gameRounds}
-        renderItem={(itemData) => {
-          return (
-            <Text>{itemData.item}</Text>
-          );
-        }}
-        keyExtractor={(item) => item}
-      />
+      <View style={styles.flatListContainer}>
+        <FlatList
+          data={gameRounds}
+          renderItem={({ item, index }) => {
+            return (
+              <RoundDetail roundNumber={index} guessNumber={item} />
+            );
+          }}
+          keyExtractor={(index) => index}
+        />
+      </View>
+
     </View>
   );
 };
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flatListContainer: {
-    width: 200,
-    height: 200
+    flex: 1,
+    padding: 20,
   }
 });
