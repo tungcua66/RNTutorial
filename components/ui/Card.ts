@@ -1,8 +1,12 @@
 import { View, StyleSheet } from 'react-native';
 import { Colors } from '../../constants/colors';
 
-const Card = ({ children }) => {
+const Card = ({
+  children
+}: any) => {
+  // @ts-expect-error TS(2322): Type 'boolean' is not assignable to type 'View'.
   return (
+    // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
     <View style={styles.container}>
       {children}
     </View>

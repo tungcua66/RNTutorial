@@ -16,7 +16,11 @@ import getRandomNumber from '../helpers/getRandomNumber';
 let minBoundary = 1;
 let maxBoundary = 99;
 
-const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
+const InGameScreen = ({
+  enteredNumber,
+  setScreen,
+  setNumberOfGuess
+}: any) => {
   const initialGuess = getRandomNumber(1, 99, enteredNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [gameRounds, setGameRounds] = useState([initialGuess]);
@@ -31,7 +35,7 @@ const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
     maxBoundary = 99;
   }, []);
 
-  const nextGuessHandler = (direction) => {
+  const nextGuessHandler = (direction: any) => {
     if ((direction === 'lower' && currentGuess < enteredNumber)
       || (direction === 'greater' && currentGuess > enteredNumber)) {
       Alert.alert(
@@ -41,7 +45,7 @@ const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
       );
       return null;
     }
-    setNumberOfGuess((prevNumber) => prevNumber + 1);
+    setNumberOfGuess((prevNumber: any) => prevNumber + 1);
     if (direction === 'lower') {
       maxBoundary = currentGuess;
     } else { minBoundary = currentGuess + 1; }
@@ -53,17 +57,23 @@ const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
 
   return (
     <View style={styles.container}>
+      // @ts-expect-error TS(2786): 'Title' cannot be used as a JSX component.
       <Title title="Opponent's guess" />
+      // @ts-expect-error TS(2786): 'NumberGuess' cannot be used as a JSX component.
       <NumberGuess textNumber={currentGuess} />
+      // @ts-expect-error TS(2786): 'Card' cannot be used as a JSX component.
       <Card>
+        // @ts-expect-error TS(2786): 'InstructionText' cannot be used as a JSX componen... Remove this comment to see the full error message
         <InstructionText> Higher or lower ?</InstructionText>
         <View style={styles.buttonsGroup}>
           <View style={styles.buttonItem}>
+            // @ts-expect-error TS(2786): 'PrimaryButton' cannot be used as a JSX component.
             <PrimaryButton onPress={() => { nextGuessHandler('greater'); }}>
               <Ionicons name="add" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonItem}>
+            // @ts-expect-error TS(2786): 'PrimaryButton' cannot be used as a JSX component.
             <PrimaryButton onPress={() => { nextGuessHandler('lower'); }}>
               <Ionicons name="remove" size={24} color="white" />
             </PrimaryButton>
@@ -75,6 +85,7 @@ const InGameScreen = ({ enteredNumber, setScreen, setNumberOfGuess }) => {
           data={gameRounds}
           renderItem={({ item, index }) => {
             return (
+              // @ts-expect-error TS(2786): 'RoundDetail' cannot be used as a JSX component.
               <RoundDetail roundNumber={index} guessNumber={item} />
             );
           }}

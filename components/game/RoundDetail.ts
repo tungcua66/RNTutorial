@@ -1,17 +1,25 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { Colors } from '../../constants/colors';
 
-const RoundDetail = ({ roundNumber, guessNumber }) => {
+const RoundDetail = ({
+  roundNumber,
+  guessNumber
+}: any) => {
+  // @ts-expect-error TS(2322): Type 'boolean' is not assignable to type 'View'.
   return (
+    // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
     <View style={styles.container}>
+      // @ts-expect-error TS(7027): Unreachable code detected.
       <Text style={styles.text}>
         {' '}
         #
         {roundNumber}
         {' '}
       </Text>
+      // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
       <Text style={styles.text}>
         {' '}
+        // @ts-expect-error TS(2304): Cannot find name 'Opponent'.
         Opponent&apos;s guess:
         {' '}
         {guessNumber}

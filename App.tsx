@@ -54,6 +54,7 @@ export default function App() {
       >
         <SafeAreaView style={styles.container}>
           {screen === 'StartGameScreen' ? (
+            // @ts-expect-error TS(2786): 'StartGameScreen' cannot be used as a JSX componen... Remove this comment to see the full error message
             <StartGameScreen
               setScreen={setScreen}
               enteredNumber={enteredNumber}
@@ -66,6 +67,7 @@ export default function App() {
               setNumberOfGuess={setNumberOfGuess}
             />
           ) : screen === 'GameOverScreen' ? (
+            // @ts-expect-error TS(2786): 'GameOverScreen' cannot be used as a JSX component... Remove this comment to see the full error message
             <GameOverScreen
               setScreen={setScreen}
               enteredNumber={enteredNumber}

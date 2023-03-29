@@ -1,8 +1,12 @@
 import { Text, StyleSheet } from 'react-native';
 import { Colors } from '../../constants/colors';
 
-const Title = ({ title }) => {
+const Title = ({
+  title
+}: any) => {
+  // @ts-expect-error TS(2322): Type 'boolean' is not assignable to type 'Text'.
   return (
+    // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
     <Text style={styles.container}>{title}</Text>
   );
 };
