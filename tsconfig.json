@@ -25,5 +25,10 @@
       "babel.config.js",
       "metro.config.js",
       "jest.config.js"
-    ]
+    ], 
+    "extends": ["airbnb", "airbnb-typescript"],
+    "parserOptions": {
+      "project": "project: './tsconfig.json"
+    }
+
 }

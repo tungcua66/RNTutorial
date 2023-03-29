@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'airbnb',
+  extends: ['airbnb', 'airbnb-typescript'],
   plugins: [
     'react',
     'react-native',
@@ -30,6 +30,16 @@ module.exports = {
     'react/function-component-definition': 0,
     'no-nested-ternary': 0,
     'import/prefer-default-export': 0,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never'
+      }
+    ]
   },
   globals: {
     fetch: false
