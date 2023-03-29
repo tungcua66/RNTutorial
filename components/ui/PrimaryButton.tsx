@@ -3,27 +3,23 @@ import {
 } from 'react-native';
 import { Colors } from '../../constants/colors';
 
+interface PrimaryButtonProps {
+  children: React.ReactNode;
+  onPress: () => void;
+}
+
 const PrimaryButton = ({
   children,
   onPress
-}: any) => {
-  // @ts-expect-error TS(2322): Type 'boolean' is not assignable to type 'View'.
+}: PrimaryButtonProps) => {
   return (
-    // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
     <View style={styles.buttonOuterContainer}>
-      // @ts-expect-error TS(2749): 'Pressable' refers to a value, but is being used a... Remove this comment to see the full error message
       <Pressable
-        // @ts-expect-error TS(7027): Unreachable code detected.
-        style={({
-          pressed
-        }: any) => (pressed
+        style={({ pressed }: any) => (pressed
           ? [styles.pressed, styles.buttonInnerContainer] : styles.buttonInnerContainer)}
-        // @ts-expect-error TS(2304): Cannot find name 'android_ripple'.
         android_ripple={{ color: Colors.android_ripple_color, borderless: true }}
-        // @ts-expect-error TS(2304): Cannot find name 'onPress'.
         onPress={onPress}
       >
-        // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
         <Text style={styles.buttonText}>{children}</Text>
       </Pressable>
     </View>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet, ImageBackground, SafeAreaView, Text
 } from 'react-native';
@@ -18,11 +18,10 @@ const backgroundImage = require('./assets/images/background.jpg');
 const openSansRegular = require('./assets/fonts/OpenSans-Regular.ttf');
 const openSansBold = require('./assets/fonts/OpenSans-Bold.ttf');
 
-export default function App() {
-
-  const [enteredNumber, setEnteredNumber] = useState('');
-  const [screen, setScreen] = useState('StartGameScreen');
-  const [numberOfGuess, setNumberOfGuess] = useState(1);
+const App: React.FC = () => {
+  const [enteredNumber, setEnteredNumber] = useState<string>('');
+  const [screen, setScreen] = useState<string>('StartGameScreen');
+  const [numberOfGuess, setNumberOfGuess] = useState<number>(1);
 
   const [fontsLoaded] = useFonts({
     'OpenSans-Regular': openSansRegular,
@@ -54,7 +53,6 @@ export default function App() {
       >
         <SafeAreaView style={styles.container}>
           {screen === 'StartGameScreen' ? (
-            // @ts-expect-error TS(2786): 'StartGameScreen' cannot be used as a JSX componen... Remove this comment to see the full error message
             <StartGameScreen
               setScreen={setScreen}
               enteredNumber={enteredNumber}
@@ -63,11 +61,10 @@ export default function App() {
           ) : screen === 'InGameScreen' ? (
             <InGameScreen
               setScreen={setScreen}
-              enteredNumber={enteredNumber}
+              enteredNumber={+enteredNumber}
               setNumberOfGuess={setNumberOfGuess}
             />
           ) : screen === 'GameOverScreen' ? (
-            // @ts-expect-error TS(2786): 'GameOverScreen' cannot be used as a JSX component... Remove this comment to see the full error message
             <GameOverScreen
               setScreen={setScreen}
               enteredNumber={enteredNumber}
@@ -79,9 +76,10 @@ export default function App() {
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
-
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {

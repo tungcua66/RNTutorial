@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   Text, View, Image, StyleSheet
 } from 'react-native';
@@ -9,47 +10,39 @@ import { Colors } from '../constants/colors';
 
 const goalImage = require('../assets/images/goal.jpg');
 
-const GameOverScreen = ({
+interface GameOverScreenProps {
+  enteredNumber: string;
+  setEnteredNumber: React.Dispatch<React.SetStateAction<string>>;
+  numberOfGuess: number;
+  setNumberOfGuess: React.Dispatch<React.SetStateAction<number>>;
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const GameOverScreen: React.FC<GameOverScreenProps> = ({
   enteredNumber,
   setEnteredNumber,
   numberOfGuess,
   setNumberOfGuess,
   setScreen
-}: any) => {
+}) => {
   const restartGame = () => {
     setEnteredNumber('');
     setNumberOfGuess(1);
     setScreen('StartGameScreen');
   };
-  // @ts-expect-error TS(2322): Type 'boolean' is not assignable to type 'View'.
+
   return (
-    // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
     <View style={styles.container}>
-      // @ts-expect-error TS(7027): Unreachable code detected.
-      <Title title="Game is  over" />
-      // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
+      <Title title="Game is over" />
       <View style={styles.imageContainer}>
-        // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
         <Image style={styles.image} source={goalImage} />
       </View>
-      // @ts-expect-error TS(2552): Cannot find name 'style'. Did you mean 'styles'?
       <Text style={styles.summaryText}>
-        // @ts-expect-error TS(2304): Cannot find name 'Your'.
-        Your component had to guess
-        {' '}
-        // @ts-expect-error TS(2304): Cannot find name 'style'.
-        <Text style={styles.highlightText}>{numberOfGuess}</Text>
-        {' '}
-        // @ts-expect-error TS(2304): Cannot find name 'time'.
-        time for number
-        // @ts-expect-error TS(2365): Operator '<' cannot be applied to types '{ ' ': an... Remove this comment to see the full error message
-        {' '}
-        // @ts-expect-error TS(2304): Cannot find name 'style'.
+        Your component had to guess{' '}
+        <Text style={styles.highlightText}>{numberOfGuess}</Text> time for number{' '}
         <Text style={styles.highlightText}>{enteredNumber}</Text>
-        {' '}
       </Text>
-      // @ts-expect-error TS(2304): Cannot find name 'onPress'.
-      <PrimaryButton onPress={restartGame}> Start new game</PrimaryButton>
+      <PrimaryButton onPress={restartGame}>Start new game</PrimaryButton>
     </View>
   );
 };
